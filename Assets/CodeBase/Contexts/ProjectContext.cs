@@ -8,5 +8,6 @@ public class ProjectContext : MonoInstaller
     {
         Container.Bind<InputService>().AsSingle();
         Container.Bind<RaycastService>().AsSingle();
+        Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
     }
 }

@@ -11,17 +11,24 @@ public class MovementController : MonoBehaviour
     private CharacterController _characterController;
     private InputService _inputService;
     private RaycastService _raycatsService;
-    //Init this value with static data
-    private float _speed = 10f;
+    private IStaticDataService _staticDataService;  
+
+    private float _speed;
+
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
     }
     [Inject]
-    public void Contructor(InputService inputService, RaycastService raycatsService)
+    public void Contructor(InputService inputService, RaycastService raycatsService, IStaticDataService staticDataService)
     {
         _inputService = inputService;
         _raycatsService = raycatsService;
+        _staticDataService = staticDataService;
+    }
+    private void Start()
+    {
+        _speed = _staticDataService.PlayerStaticData.Speed;
     }
     private void Update()
     {
