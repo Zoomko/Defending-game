@@ -9,17 +9,16 @@ namespace Assets.CodeBase.Services
 {
     public class RaycastService
     {
-        private readonly InputService _inputService;
-        private readonly Camera _camera;
+        private readonly InputService _inputService;  
 
         public RaycastService(InputService inputService)
         {
-            _inputService = inputService;
-            _camera = Camera.main;
+            _inputService = inputService;          
         }
+
         public bool RaycastFromMousePosition(out RaycastHit raycastHit)
         {
-            var ray = _camera.ScreenPointToRay(_inputService.MousePosition);
+            var ray = Camera.main.ScreenPointToRay(_inputService.MousePosition);
             if(Physics.Raycast(ray,out raycastHit))
                 return true;
             return false;

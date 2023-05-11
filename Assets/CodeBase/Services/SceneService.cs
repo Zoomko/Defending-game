@@ -7,8 +7,8 @@ namespace Assets.CodeBase.App.Services
 {
     public class SceneService : ISceneService
     {
-        private readonly CoroutineService _coroutineService;
-        public SceneService(CoroutineService coroutineObject)
+        private readonly CoroutineRunner _coroutineService;
+        public SceneService(CoroutineRunner coroutineObject)
         {
             _coroutineService = coroutineObject;
         }

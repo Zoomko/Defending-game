@@ -9,11 +9,13 @@ namespace Assets.CodeBase.Services
         private readonly string _path;
         private readonly ILoadSaveDataFormat _loadSaveDataFormat;
         private PersistentGameData _persistentGameData;
+        public PersistentGameData PersistentGameData => _persistentGameData; 
         public PersistentDataService(ILoadSaveDataFormat loadSaveDataFormat)
         {
-            _path = Application.persistentDataPath;
+            _path = "Data";
             _loadSaveDataFormat = loadSaveDataFormat;
         }
+
 
         public event Action<PersistentGameData> Loading;
 

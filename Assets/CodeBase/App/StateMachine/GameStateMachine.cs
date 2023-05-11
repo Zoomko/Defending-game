@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Assets.CodeBase.App.Services;
+using Assets.CodeBase.Services;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.CodeBase.App.StateMachine
 {
@@ -10,14 +9,23 @@ namespace Assets.CodeBase.App.StateMachine
     {
         private Dictionary<Type, IState> _states;
         private IState _currentState;
-        public GameStateMachine()
+        public GameStateMachine(IStaticDataService staticDataService,
+                                PersistentDataService persistentDataService,
+                                ISceneService sceneService,
+                                GameObjectsController gameObjectsController,
+                                WaveController waveController)
         {
-            _states= new Dictionary<Type, IState>();
+            _states = new Dictionary<Type, IState>()
+            {
+                {typeof(LoadStaticDataState), new LoadStaticDataState(this, staticDataService) },
+                {typeof(LoadPersistentDataState), new LoadPersistentDataState(this, persistentDataService) },
+                {typeof(LoadSceneState), new LoadSceneState(this, sceneService, gameObjectsController,waveController) }
+            };
         }
 
         public void Enter<T>() where T : INoneParameterizedState
         {
-            if(!_states.ContainsKey(typeof(T)))
+            if (!_states.ContainsKey(typeof(T)))
                 throw new KeyNotFoundException();
 
             if (_currentState == null)
@@ -32,10 +40,10 @@ namespace Assets.CodeBase.App.StateMachine
                 var state = _states[typeof(T)] as INoneParameterizedState;
                 _currentState = state;
                 state.Enter();
-            }                
+            }
         }
 
-        public void Enter<T1,T2>(T2 data) where T1 : IParameterizedState
+        public void Enter<T1, T2>(T2 data) where T1 : IParameterizedState
         {
             if (!_states.ContainsKey(typeof(T1)))
                 throw new KeyNotFoundException();

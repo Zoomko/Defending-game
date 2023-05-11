@@ -11,24 +11,25 @@ public class MovementController : MonoBehaviour
     private CharacterController _characterController;
     private InputService _inputService;
     private RaycastService _raycatsService;
-    private IStaticDataService _staticDataService;  
+    private PlayerStaticData _playerStaticData;  
 
     private float _speed;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-    }
-    [Inject]
-    public void Contructor(InputService inputService, RaycastService raycatsService, IStaticDataService staticDataService)
+    }    
+
+    public void Contructor(InputService inputService, RaycastService raycatsService, PlayerStaticData playerStaticData)
     {
         _inputService = inputService;
         _raycatsService = raycatsService;
-        _staticDataService = staticDataService;
+        _playerStaticData = playerStaticData;
     }
+
     private void Start()
     {
-        _speed = _staticDataService.PlayerStaticData.Speed;
+        _speed = _playerStaticData.MovementSpeed;
     }
     private void Update()
     {

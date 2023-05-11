@@ -2,7 +2,7 @@
 
 namespace Assets.CodeBase.App.Services
 {
-    public class CoroutineService:MonoBehaviour
+    public class CoroutineRunner:MonoBehaviour
     {
     }
 }
