@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.CodeBase.Data.StaticData.Enemy;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Assets.CodeBase.Data.StaticData
     [Serializable]
     public class Wave: ICloneable
     {
-        public List<EnemyParameters> Enemies;
+        public List<EnemyTypeAndCount> Enemies;
 
         public int WaveTimeLengthInSeconds = 60;
 
@@ -25,10 +26,10 @@ namespace Assets.CodeBase.Data.StaticData
             wave.DamageScale = DamageScale;
             wave.SpeedOfAttackScale = SpeedOfAttackScale;
 
-            wave.Enemies = new List<EnemyParameters>();
+            wave.Enemies = new List<EnemyTypeAndCount>();
             foreach(var enemy in Enemies)
             {
-                wave.Enemies.Add(new EnemyParameters() { EnemyType = enemy.EnemyType, EmenyCount = enemy.EmenyCount });
+                wave.Enemies.Add(new EnemyTypeAndCount() { EnemyType = enemy.EnemyType, EmenyCount = enemy.EmenyCount });
             }
             return wave;
         }

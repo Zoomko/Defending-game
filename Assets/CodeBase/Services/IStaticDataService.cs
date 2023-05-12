@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.Data.StaticData;
+using Assets.CodeBase.Data.StaticData.Enemy;
 
 namespace Assets.CodeBase.Services
 {
@@ -9,6 +10,7 @@ namespace Assets.CodeBase.Services
         Waves WavesStaticData { get; }
 
         BulletsStaticData BulletsStaticData { get; }
+        GameStaticData GameStaticData { get; }
         void Load();
     }
 }

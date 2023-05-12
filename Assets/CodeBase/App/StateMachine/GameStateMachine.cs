@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.App.Services;
+using Assets.CodeBase.Factory;
 using Assets.CodeBase.Services;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,19 @@ namespace Assets.CodeBase.App.StateMachine
         public GameStateMachine(IStaticDataService staticDataService,
                                 PersistentDataService persistentDataService,
                                 ISceneService sceneService,
-                                GameObjectsController gameObjectsController,
-                                WaveController waveController)
+                                SaveLoadController gameObjectsController,
+                                WaveController waveController,
+                                IPlayerFactory playerFactory,
+                                ICrystalFactory crystalFactory,
+                                IEnemyFactory enemyFactory)
         {
             _states = new Dictionary<Type, IState>()
             {
                 {typeof(LoadStaticDataState), new LoadStaticDataState(this, staticDataService) },
                 {typeof(LoadPersistentDataState), new LoadPersistentDataState(this, persistentDataService) },
-                {typeof(LoadSceneState), new LoadSceneState(this, sceneService, gameObjectsController,waveController) }
+                {typeof(LoadSceneState), new LoadSceneState(this, sceneService, gameObjectsController,waveController) },
+                {typeof(SpawnObjectsState), new SpawnObjectsState(this,waveController, persistentDataService,playerFactory,crystalFactory,enemyFactory) }
+
             };
         }
 

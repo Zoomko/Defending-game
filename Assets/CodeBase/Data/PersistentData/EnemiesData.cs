@@ -1,4 +1,4 @@
-﻿using Assets.CodeBase.Data.StaticData;
+﻿using Assets.CodeBase.Data.StaticData.Enemy;
 
 namespace Assets.CodeBase.Data.PersistentData
 {

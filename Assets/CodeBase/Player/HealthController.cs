@@ -15,7 +15,7 @@ namespace Assets.CodeBase.Player
         private int _maxHealth;
         private int _health;
 
-        public event Action<int, int> HealthChanged;
+        public event Action<int, int, int> HealthChanged;
 
         public void Constructor(PlayerStaticData playerStaticData)
         {
@@ -36,7 +36,7 @@ namespace Assets.CodeBase.Player
             {
                 _dieController.Die();
             }
-            HealthChanged?.Invoke(result, value);
+            HealthChanged?.Invoke(result, _maxHealth, value);
             _health = result;
         }
 

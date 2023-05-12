@@ -11,6 +11,7 @@ public class PlayerStaticData : ScriptableObject
     public int HP;
 
     [Header("Bullet")]
+    public float Radius;
     public int BulletDamage;
     public float BulletLiveTime;
     public float BulletSpeed;

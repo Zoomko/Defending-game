@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStaticData
   m_EditorClassIdentifier: 
   MovementSpeed: 10
-  AttackSpeed: 1
-  HP: 10
-  BulletDamage: 1
+  AttackSpeed: 5
+  HP: 100
+  Radius: 0.3
+  BulletDamage: 10
   BulletLiveTime: 5
-  BulletSpeed: 10
+  BulletSpeed: 25
   PlayerPrefab: {fileID: 4625609476655144510, guid: 1072393adb74b9e4a911dea7911c7de3, type: 3}

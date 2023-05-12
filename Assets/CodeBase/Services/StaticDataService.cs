@@ -1,4 +1,5 @@
 ﻿using Assets.CodeBase.Data.StaticData;
+using Assets.CodeBase.Data.StaticData.Enemy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace Assets.CodeBase.Services
         private EnemiesStaticData _enemiesStaticData;
         private Waves _wavesStaticData;
         private BulletsStaticData _bulletsStaticData;
+        private GameStaticData _gameStaticData;
 
         public PlayerStaticData PlayerStaticData => _playerStaticData;
         public EnemiesStaticData EnemiesStaticData => _enemiesStaticData;
         public Waves WavesStaticData => _wavesStaticData;
+
+        public GameStaticData GameStaticData => _gameStaticData;
 
         public BulletsStaticData BulletsStaticData => _bulletsStaticData;
 
@@ -27,6 +31,7 @@ namespace Assets.CodeBase.Services
             LoadEnemiesStaticData();
             LoadWavesStaticData();
             LoadBulletsStaticData();
+            LoadGameStaticData();
         }
         public void LoadPlayerStaticData()
         {
@@ -43,6 +48,10 @@ namespace Assets.CodeBase.Services
         public void LoadBulletsStaticData()
         {
             _bulletsStaticData = Resources.Load<BulletsStaticData>(Paths.BulletStaticDataPath);
+        }
+        public void LoadGameStaticData()
+        {
+            _gameStaticData = Resources.Load<GameStaticData>(Paths.GameStaticDataPath);
         }
     }
 }

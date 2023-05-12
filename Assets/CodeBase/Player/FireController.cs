@@ -11,6 +11,7 @@ namespace Assets.CodeBase.Player
         private InputService _inputService;
         private PlayerStaticData _playerStaticData;
         private IBulletFactory _bulletFactory;
+        private bool _isReloading;
         public void Constructor(InputService inputService, PlayerStaticData playerStaticData, IBulletFactory bulletFactory)
         {
             _inputService = inputService;
@@ -24,7 +25,8 @@ namespace Assets.CodeBase.Player
         }
         private void OnAttackButtonPressed()
         {
-            StartCoroutine(Fire());
+            if(!_isReloading)
+                StartCoroutine(Fire());
         }
         private IEnumerator Fire()
         {
@@ -32,14 +34,17 @@ namespace Assets.CodeBase.Player
             {
                 Damage = _playerStaticData.BulletDamage,
                 LiveTime = _playerStaticData.BulletLiveTime,
-                Speed = _playerStaticData.BulletSpeed
+                Speed = _playerStaticData.BulletSpeed,
+                Radius = _playerStaticData.Radius
             };
             while (_inputService.IsAttacking)
-            {  
+            {
                 var bullet = _bulletFactory.Create(BulletType.playerBullet, bulletParameters);
                 bullet.transform.position = _fireSpot.position;
                 bullet.transform.forward = _fireSpot.forward;
+                _isReloading = true;
                 yield return new WaitForSeconds(1f / _playerStaticData.AttackSpeed);
+                _isReloading = false;
             }
         }
 

@@ -13,10 +13,10 @@ namespace Assets.CodeBase.App.StateMachine
     {
         private readonly GameStateMachine _gameStateMachine;
         private readonly ISceneService _sceneService;  
-        private readonly GameObjectsController _gameObjectsController;
+        private readonly SaveLoadController _gameObjectsController;
         private readonly WaveController _waveController;
 
-        public LoadSceneState(GameStateMachine gameStateMachine, ISceneService sceneService, GameObjectsController gameObjectsController, WaveController waveController)
+        public LoadSceneState(GameStateMachine gameStateMachine, ISceneService sceneService, SaveLoadController gameObjectsController, WaveController waveController)
         {
             _gameStateMachine = gameStateMachine;
             _sceneService = sceneService;         
@@ -32,8 +32,7 @@ namespace Assets.CodeBase.App.StateMachine
         }
         public void OnLoaded()
         {
-            _gameObjectsController.SetupSceneWithObject();
-            _waveController.StartWave();
+            _gameStateMachine.Enter<SpawnObjectsState>();
         }
         public void Exit()
         {

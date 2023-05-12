@@ -20,7 +20,7 @@ public class ProjectContext : MonoInstaller
         Container.Bind<GameStateMachine>().AsSingle();
         Container.Bind<PersistentDataService>().AsSingle();
         Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle();
-        Container.Bind<GameObjectsController>().AsSingle();
+        Container.Bind<SaveLoadController>().AsSingle();
     }
 
     private void RegisterFactories()
@@ -28,5 +28,6 @@ public class ProjectContext : MonoInstaller
         Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
         Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
         Container.Bind<IBulletFactory>().To<BulletFactory>().AsSingle();
+        Container.Bind<ICrystalFactory>().To<CrystalFactory>().AsSingle();
     }
 }
