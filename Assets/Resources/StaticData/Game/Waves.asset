@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyWaves:
   - Enemies:
     - EnemyType: 0
-      EmenyCount: 20
+      EmenyCount: 50
     WaveTimeLengthInSeconds: 60
     HPScale: 1
     DamageScale: 1

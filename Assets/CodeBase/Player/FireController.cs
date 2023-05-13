@@ -7,7 +7,7 @@ namespace Assets.CodeBase.Player
     public class FireController : MonoBehaviour
     {
         [SerializeField]
-        private Transform _fireSpot;
+        private Transform _fireSpot;       
         private InputService _inputService;
         private PlayerStaticData _playerStaticData;
         private IBulletFactory _bulletFactory;
@@ -24,7 +24,7 @@ namespace Assets.CodeBase.Player
             _inputService.Attacked -= OnAttackButtonPressed;
         }
         private void OnAttackButtonPressed()
-        {
+        {         
             if(!_isReloading)
                 StartCoroutine(Fire());
         }
@@ -43,7 +43,7 @@ namespace Assets.CodeBase.Player
                 bullet.transform.position = _fireSpot.position;
                 bullet.transform.forward = _fireSpot.forward;
                 _isReloading = true;
-                yield return new WaitForSeconds(1f / _playerStaticData.AttackSpeed);
+                yield return new WaitForSeconds(1f / _playerStaticData.AttackPerSecond);
                 _isReloading = false;
             }
         }

@@ -12,5 +12,6 @@ namespace Assets.CodeBase.Enemy.StateMachine
         public Transform Crystal;
         public NavMeshAgent Agent;
         public Transform SelfTransform;
+        public IAttackController AttackController;
     }
 }

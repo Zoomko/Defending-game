@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &75352993656292111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6602672364834695133}
+  m_Layer: 7
+  m_Name: FireSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6602672364834695133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75352993656292111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6363545412383479077}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3337187973382440019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +38,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1213913210219525505, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1411556273419540738, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
       propertyPath: _enemyType
       value: 1
@@ -15,9 +50,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranger Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5369116787786672890, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6976534796104822652, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
       propertyPath: _enemyType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185419616777653085, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8511741798761468278, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
       propertyPath: m_RootOrder
@@ -63,8 +106,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9110280630490547057, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
+--- !u!4 &6363545412383479077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8511741798761468278, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
+  m_PrefabInstance: {fileID: 3337187973382440019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7265147885228322473 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5369116787786672890, guid: 7c5470f23bb52014eb2c838c5daedf17, type: 3}
@@ -120,3 +172,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-5445253668252240142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7265147885228322473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdf4a8358229394c9b8b8923fd2f314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireSpot: {fileID: 6602672364834695133}

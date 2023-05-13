@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4625609476655144509}
   - component: {fileID: 4625609476655144508}
   - component: {fileID: 1788037818426553617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129943563526444355}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

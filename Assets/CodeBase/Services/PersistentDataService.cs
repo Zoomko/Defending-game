@@ -9,23 +9,22 @@ namespace Assets.CodeBase.Services
         private readonly string _path;
         private readonly ILoadSaveDataFormat _loadSaveDataFormat;
         private PersistentGameData _persistentGameData;
-        public PersistentGameData PersistentGameData => _persistentGameData; 
+        
+        public event Action<PersistentGameData> Loading;
+        public event Action<PersistentGameData> Saving;
+
         public PersistentDataService(ILoadSaveDataFormat loadSaveDataFormat)
         {
             _path = "Data";
             _loadSaveDataFormat = loadSaveDataFormat;
         }
 
-
-        public event Action<PersistentGameData> Loading;
-
-        public event Action<PersistentGameData> Saving;
-
         public void Load()
         {
             _persistentGameData = _loadSaveDataFormat.Load<PersistentGameData>(_path);
             Loading?.Invoke(_persistentGameData);
         }
+
         public void Save()
         {
             Saving?.Invoke(_persistentGameData);

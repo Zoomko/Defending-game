@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:ProgressBar title="HP" name="HPBar" high-value="100" tabindex="0" low-value="103.1" style="opacity: 1; background-color: rgba(0, 0, 0, 255); right: auto; left: auto; max-width: 50%; min-width: 300px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; margin-right: 0; margin-left: 0;" />
+</ui:UXML>

@@ -12,12 +12,20 @@ namespace Assets.CodeBase.Data.StaticData.Enemy
     {
         [Range(0, 100)]
         public int HP;
+
         [Header("Movement")]
         public float MovementSpeed;
         public float RotationSpeed;
+
         [Header("Attack")]
         public float RangeOfAttack;
-        public float AttackSpeed;
-        public float AttackDamage;
+        public float AttackPerSecond;
+        public int AttackDamage;
+        public float TimeToPrepaiarForAttack;
+
+        [Header("Bullet")]
+        public float BulletRadius;      
+        public float BulletLiveTime;
+        public float BulletSpeed;
     }
 }

@@ -31,11 +31,11 @@ namespace Assets.CodeBase.Factory
 
             var movementController = playerGameObject.GetComponent<MovementController>();
             var fireController = playerGameObject.GetComponent<FireController>();
-            var helathController = playerGameObject.GetComponent<HealthController>();
+            var healthController = playerGameObject.GetComponent<HealthController>();           
 
             fireController.Constructor(_inputService, _staticDataService.PlayerStaticData, _bulletFactory);
             movementController.Contructor(_inputService, _raycatsService, _staticDataService.PlayerStaticData);
-            helathController.Constructor(_staticDataService.PlayerStaticData);
+            healthController.Constructor(_staticDataService.PlayerStaticData);      
 
             _player = playerGameObject;
             return playerGameObject;

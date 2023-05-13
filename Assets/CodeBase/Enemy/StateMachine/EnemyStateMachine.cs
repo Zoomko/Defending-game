@@ -16,16 +16,19 @@ namespace Assets.CodeBase.Enemy.StateMachine
         private Transform _player;
         private Transform _crystal;
         private NavMeshAgent _agent;
-        
+        private IAttackController _attackController;
+
+
 
         private Dictionary<Type, IEnemyState> _states;
         private IEnemyState _currentState;
 
-        public void Contructor(Dictionary<EnemyType, EnemyInfo> enemiesInfo , Transform player, Transform crystal)
+        public void Contructor(EnemyCharacteristics enemyCharacteristics , Transform player, Transform crystal, IAttackController attackController)
         {
-            _enemyCharacteristics = enemiesInfo[_enemyTypeHolder.EnemyType].EnemyCharacteristics;
+            _enemyCharacteristics = enemyCharacteristics;
             _player = player;
             _crystal = crystal;
+            _attackController = attackController;
         }
 
         private void Awake()
@@ -62,6 +65,7 @@ namespace Assets.CodeBase.Enemy.StateMachine
             parameters.Crystal = _crystal;
             parameters.SelfTransform = transform;
             parameters.Agent = _agent;
+            parameters.AttackController = _attackController;
             return parameters;
         }
 

@@ -12,18 +12,20 @@ namespace Assets.CodeBase.Factory
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IPlayerFactory _playerFactory;
-        private readonly ICrystalFactory _crystalFactory;   
+        private readonly ICrystalFactory _crystalFactory;
+        private readonly IBulletFactory _bulletFactory;
 
         private readonly Dictionary<EnemyType, Pool> _enemies;
 
-        public EnemyFactory(IStaticDataService staticDataService, IPlayerFactory playerFactory, ICrystalFactory crystalFactory)
+        public EnemyFactory(IStaticDataService staticDataService, IPlayerFactory playerFactory, ICrystalFactory crystalFactory, IBulletFactory bulletFactory)
         {           
             _staticDataService = staticDataService;
             _playerFactory = playerFactory;
             _crystalFactory = crystalFactory;
-
+            _bulletFactory = bulletFactory;
             _enemies = new Dictionary<EnemyType, Pool>();            
         }
+
         public void InitializePool()
         {
             _enemies.Add(EnemyType.Creep, new Pool(_staticDataService.EnemiesStaticData.EnemiesCollection[EnemyType.Creep].EnemyPrefab));
@@ -31,17 +33,42 @@ namespace Assets.CodeBase.Factory
         }
 
         public GameObject Create(EnemyType enemyType)
-        {           
+        {
             var enemyGameObject = _enemies[enemyType].Get();
             enemyGameObject.SetActive(true);
+
             var enemyStateMachine = enemyGameObject.GetComponent<EnemyStateMachine>();
             var enemyHealthController = enemyGameObject.GetComponent<EnemyHealthController>();
             var enemyDieController = enemyGameObject.GetComponent<EnemyDieController>();
+            var healthBar = enemyGameObject.GetComponentInChildren<HealthBar>();
+            var attackController = enemyGameObject.GetComponent<IAttackController>();
+            var enemyCharacteristics = _staticDataService.EnemiesStaticData.EnemiesCollection[enemyType].EnemyCharacteristics;
+
+            SetupEnemyAttackController(enemyType, enemyGameObject);
+
             enemyDieController.Died += OnEnemyDie;
-            enemyHealthController.Constructor(_staticDataService.EnemiesStaticData.EnemiesCollection[enemyType].EnemyCharacteristics);
-            enemyStateMachine.Contructor(_staticDataService.EnemiesStaticData.EnemiesCollection, _playerFactory.Player.transform, _crystalFactory.Crystal.transform);
+            healthBar.ResetValue();
+            enemyHealthController.Constructor(enemyCharacteristics);
+            enemyStateMachine.Contructor(enemyCharacteristics, _playerFactory.Player.transform, _crystalFactory.Crystal.transform, attackController);
             return enemyGameObject;
         }
+
+        private void SetupEnemyAttackController(EnemyType enemyType, GameObject enemyGameObject)
+        {
+            var enemyCharacteristics = _staticDataService.EnemiesStaticData.EnemiesCollection[enemyType].EnemyCharacteristics;
+
+            if (enemyType == EnemyType.Creep)
+            {
+                var meleeAttackController = enemyGameObject.GetComponent<MeleeAttackController>();
+                meleeAttackController.Constructor(enemyCharacteristics);
+            }
+            else if (enemyType == EnemyType.Ranger)
+            {
+                var rangeAttackContoller = enemyGameObject.GetComponent<RangeAttackController>();
+                rangeAttackContoller.Constructor(enemyCharacteristics, _bulletFactory);
+            }
+        }
+
         private void OnEnemyDie(GameObject gameObject)
         {
             var dieController = gameObject.GetComponent<EnemyDieController>();

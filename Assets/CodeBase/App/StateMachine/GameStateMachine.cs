@@ -17,14 +17,26 @@ namespace Assets.CodeBase.App.StateMachine
                                 WaveController waveController,
                                 IPlayerFactory playerFactory,
                                 ICrystalFactory crystalFactory,
-                                IEnemyFactory enemyFactory)
+                                IEnemyFactory enemyFactory,
+                                IBulletFactory bulletFactory)
         {
             _states = new Dictionary<Type, IState>()
             {
-                {typeof(LoadStaticDataState), new LoadStaticDataState(this, staticDataService) },
-                {typeof(LoadPersistentDataState), new LoadPersistentDataState(this, persistentDataService) },
-                {typeof(LoadSceneState), new LoadSceneState(this, sceneService, gameObjectsController,waveController) },
-                {typeof(SpawnObjectsState), new SpawnObjectsState(this,waveController, persistentDataService,playerFactory,crystalFactory,enemyFactory) }
+                {typeof(LoadStaticDataState), new LoadStaticDataState(this,
+                                                                      staticDataService) },
+                {typeof(LoadPersistentDataState), new LoadPersistentDataState(this,
+                                                                              persistentDataService) },
+                {typeof(LoadSceneState), new LoadSceneState(this,
+                                                            sceneService,
+                                                            gameObjectsController,
+                                                            waveController) },
+                {typeof(SpawnObjectsState), new SpawnObjectsState(this,
+                                                                  waveController,
+                                                                  persistentDataService,
+                                                                  playerFactory,
+                                                                  crystalFactory,
+                                                                  enemyFactory,
+                                                                  bulletFactory) }
 
             };
         }

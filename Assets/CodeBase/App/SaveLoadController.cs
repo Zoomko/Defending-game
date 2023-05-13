@@ -23,10 +23,12 @@ namespace Assets.CodeBase.App
         
         private void SaveScene()
         {
+            Debug.Log("Save");
             _persistentDataService.Save();
         }
         private void LoadScene()
         {
+            Debug.Log("Load");
             _persistentDataService.Load();
         }
     }

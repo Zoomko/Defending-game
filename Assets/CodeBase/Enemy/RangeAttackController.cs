@@ -1,18 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.CodeBase.Data.StaticData.Enemy;
+using Assets.CodeBase.Factory;
 using UnityEngine;
 
-public class RangeAttackController : MonoBehaviour
+namespace Assets.CodeBase.Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    public class RangeAttackController : MonoBehaviour, IAttackController
     {
-        
-    }
+        [SerializeField]
+        private Transform _fireSpot;
+        private EnemyCharacteristics _enemyCharacteristics;
+        private IBulletFactory _bulletFactory;
+        public void Constructor(EnemyCharacteristics enemyCharacteristics, IBulletFactory bulletFactory)
+        {
+            _enemyCharacteristics = enemyCharacteristics;
+            _bulletFactory = bulletFactory;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Attack()
+        {
+            var parameters = new BulletParametes()
+            {
+                Damage = _enemyCharacteristics.AttackDamage,
+                Radius = _enemyCharacteristics.BulletRadius,
+                Speed = _enemyCharacteristics.BulletSpeed,
+                LiveTime = _enemyCharacteristics.BulletLiveTime
+            };
+
+            var bullet = _bulletFactory.Create(BulletType.enemyBullet, parameters);
+            bullet.transform.position = _fireSpot.position;
+            bullet.transform.forward = _fireSpot.forward;
+        }
     }
 }

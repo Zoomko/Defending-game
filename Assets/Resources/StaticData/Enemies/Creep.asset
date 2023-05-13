@@ -15,6 +15,10 @@ MonoBehaviour:
   HP: 60
   MovementSpeed: 7
   RotationSpeed: 120
-  RangeOfAttack: 5
-  AttackSpeed: 1
+  RangeOfAttack: 3
+  AttackPerSecond: 1
   AttackDamage: 10
+  TimeToPrepaiarForAttack: 0.5
+  BulletRadius: 0
+  BulletLiveTime: 0
+  BulletSpeed: 0

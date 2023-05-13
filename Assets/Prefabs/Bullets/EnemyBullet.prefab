@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1066712598181252101, guid: 267e5aecab00d634b97c5effb07aad7a, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3195201496371560176, guid: 267e5aecab00d634b97c5effb07aad7a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -83,3 +83,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletType: 1
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 65

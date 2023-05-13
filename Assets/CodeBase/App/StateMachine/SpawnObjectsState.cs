@@ -18,13 +18,15 @@ namespace Assets.CodeBase.App.StateMachine
         private readonly IPlayerFactory _playerFactory;
         private readonly ICrystalFactory _crystalFactory;
         private readonly IEnemyFactory _enemyFactory;
+        private readonly IBulletFactory _bulletFactory;
 
         public SpawnObjectsState(GameStateMachine gameStateMachine,
                                  WaveController waveController,
                                  PersistentDataService persistentDataService,
                                  IPlayerFactory playerFactory,
                                  ICrystalFactory crystalFactory,
-                                 IEnemyFactory enemyFactory)
+                                 IEnemyFactory enemyFactory,
+                                 IBulletFactory bulletFactory)
         {
             _gameStateMachine = gameStateMachine;          
             _waveController = waveController;
@@ -32,11 +34,13 @@ namespace Assets.CodeBase.App.StateMachine
             _playerFactory = playerFactory;
             _crystalFactory = crystalFactory;
             _enemyFactory = enemyFactory;
+            _bulletFactory = bulletFactory;
         }
 
         public void Enter()
         {
             _enemyFactory.InitializePool();
+            _bulletFactory.InitializePool();
 
             PlayerSpawner playerSpawner = GameObject.FindObjectOfType<PlayerSpawner>();
             EnemySpawner[] enemySpawners = GameObject.FindObjectsOfType<EnemySpawner>();

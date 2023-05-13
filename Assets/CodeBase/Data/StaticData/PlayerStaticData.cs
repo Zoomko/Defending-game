@@ -7,7 +7,7 @@ public class PlayerStaticData : ScriptableObject
 {
     [Header("Characteristics")]
     public float MovementSpeed;
-    public float AttackSpeed;
+    public float AttackPerSecond;
     public int HP;
 
     [Header("Bullet")]

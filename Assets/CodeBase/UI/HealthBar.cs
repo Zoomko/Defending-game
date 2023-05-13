@@ -18,7 +18,12 @@ public class HealthBar : MonoBehaviour
     }
     private void Start()
     {
-        _cameraTransform = Camera.main.transform;
+        _cameraTransform = Camera.main.transform;       
+    }
+
+    public void ResetValue()
+    {
+        _healthImageTarget.fillAmount = 1f;
     }
 
     public void OnHealthChange(int currentHp, int maxHp, int damage)
@@ -27,7 +32,7 @@ public class HealthBar : MonoBehaviour
     }
 
     private void LateUpdate()
-    {
-        transform.LookAt(_cameraTransform.position);
+    {        
+        transform.forward = _cameraTransform.forward;
     }
 }

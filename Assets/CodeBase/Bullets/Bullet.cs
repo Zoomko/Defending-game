@@ -8,27 +8,31 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.CodeBase.Data.Bullets
+namespace Assets.CodeBase.Bullets
 {
     public abstract class Bullet : MonoBehaviour
     {
         [SerializeField]
         private BulletType _bulletType;
-        private BulletParametes _bulletParametes;
+        [SerializeField]
+        private LayerMask _layerMask;
+        private BulletParametes _bulletParametes;  
         public BulletType BulletType => _bulletType;
+        public Action<GameObject> Destroyed;
+        
 
         public void Constructor(BulletParametes bulletParametes)
         {
             _bulletParametes = bulletParametes;
-            transform.localScale = Vector3.one * bulletParametes.Radius;
+            transform.localScale = Vector3.one * bulletParametes.Radius;     
         }
 
-        private void Start()
+        public void Fly()
         {
-            StartCoroutine(Fly());
+            StartCoroutine(Flying());
         }
 
-        private IEnumerator Fly()
+        private IEnumerator Flying()
         {
             float startTime = Time.time;
             float destroyTime = startTime + _bulletParametes.LiveTime;
@@ -37,7 +41,7 @@ namespace Assets.CodeBase.Data.Bullets
                 transform.position += transform.forward * Time.deltaTime * _bulletParametes.Speed;
                 yield return null;
             }
-            Destroy(gameObject);
+            Destroyed?.Invoke(gameObject);
         }
 
         private void FixedUpdate()
@@ -46,16 +50,17 @@ namespace Assets.CodeBase.Data.Bullets
         }
         private void CheckCollisions()
         {
-            var colliders = Physics.OverlapSphere(transform.position, _bulletParametes.Radius);
-            if(colliders.Length >= 1)
-            {
-                if(colliders[0].gameObject.TryGetComponent<IDamagable>(out var damagable))
+            var colliders = Physics.OverlapSphere(transform.position, _bulletParametes.Radius, _layerMask);
+            if (colliders.Length >= 1)
+            {                
+                if (colliders.First().gameObject.TryGetComponent<IDamagable>(out var damagable))
                 {
                     damagable.GetDamage(_bulletParametes.Damage);
                 }
-                Destroy(gameObject);
+                StopAllCoroutines();
+                Destroyed?.Invoke(gameObject);                
             }
         }
     }
-   
+
 }

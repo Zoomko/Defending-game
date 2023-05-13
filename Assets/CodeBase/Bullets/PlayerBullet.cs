@@ -1,4 +1,5 @@
-﻿using Assets.CodeBase.Factory;
+﻿using Assets.CodeBase.Bullets;
+using Assets.CodeBase.Factory;
 using Assets.CodeBase.Player;
 using System;
 using System.Collections;

@@ -1,18 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using Assets.CodeBase.Data.StaticData.Enemy;
+using Assets.CodeBase.Player;
+using System.Linq;
 using UnityEngine;
 
-public class MeleeAttackController : MonoBehaviour
+namespace Assets.CodeBase.Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MeleeAttackController : MonoBehaviour, IAttackController
     {
-        
-    }
+        private EnemyCharacteristics _enemyCharacteristics;
+        private LayerMask _layerMask;
+        private Collider[] _colliders;
+        public void Constructor(EnemyCharacteristics enemyCharacteristics)
+        {
+            _enemyCharacteristics = enemyCharacteristics;
+        }
+        private void Start()
+        {
+            _layerMask = ( 1 << LayerMask.NameToLayer("Player") );
+            _colliders = new Collider[1];
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Attack()
+        {
+            var spherePosition = transform.position + transform.forward * (0.5f * _enemyCharacteristics.RangeOfAttack);
+            var sphereRadius = _enemyCharacteristics.RangeOfAttack / 2f;
+            int hits = RotaryHeart.Lib.PhysicsExtension.Physics.OverlapSphereNonAlloc(spherePosition, sphereRadius, _colliders, _layerMask, RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Both,1f, Color.green, Color.red);
+            if(hits > 0 && _colliders.First().gameObject.TryGetComponent<IDamagable>(out var damagable))
+            {
+                damagable.GetDamage(_enemyCharacteristics.AttackDamage);
+            }
+        }
     }
 }
