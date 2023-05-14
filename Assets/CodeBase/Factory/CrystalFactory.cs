@@ -22,6 +22,9 @@ namespace Assets.CodeBase.Factory
         {
             var crystalPrefab = _staticDataService.GameStaticData.Crystal;
             var crystalGameObject = GameObject.Instantiate(crystalPrefab);
+            var healthController = crystalGameObject.GetComponent<CrystalHealthController>();
+            var dieContoller = crystalGameObject.GetComponent<CrystalDieController>();
+            healthController.Constructor(_staticDataService.GameStaticData);
             _crystal = crystalGameObject;
             return crystalGameObject;
         }

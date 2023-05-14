@@ -10,6 +10,7 @@ namespace Assets.CodeBase.Data.StaticData
     [CreateAssetMenu(menuName = "StaticData/Game", fileName = "GameStaticData")]
     public class GameStaticData : ScriptableObject
     {
+        public int CrystalHP;
         public GameObject Crystal;
     }
 }

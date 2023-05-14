@@ -16,7 +16,7 @@ namespace Assets.CodeBase.Enemy
         }
         private void Start()
         {
-            _layerMask = ( 1 << LayerMask.NameToLayer("Player") );
+            _layerMask = ( 1 << LayerMask.NameToLayer("Ally") );
             _colliders = new Collider[1];
         }
 
