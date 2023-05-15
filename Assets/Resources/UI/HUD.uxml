@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/USS/hp-bar.uss?fileID=7433441132597879392&amp;guid=51ecaba4e7a35464ebe66d2265d6a405&amp;type=3#hp-bar" />
+    <ui:ProgressBar title="HP" name="HPBar" high-value="100" tabindex="0" low-value="0" class="hp-bar" style="opacity: 1; background-color: rgb(0, 0, 0); right: auto; left: auto; max-width: 50%; min-width: 300px; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; margin-right: 0; margin-left: 0;" />
+</ui:UXML>

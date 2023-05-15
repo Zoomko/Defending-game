@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2acf4bece165694c92600b07a3b519f, type: 3}
   m_Name: GameStaticData
   m_EditorClassIdentifier: 
-  CrystalHP: 100
-  Crystal: {fileID: 1055611544227634665, guid: 949c34cec72f9e446be9da64f63cb95c, type: 3}
+  CrystalHP: 1000
+  Crystal: {fileID: 1074497061498177069, guid: 949c34cec72f9e446be9da64f63cb95c, type: 3}

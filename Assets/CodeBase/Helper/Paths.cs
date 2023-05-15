@@ -9,4 +9,6 @@ public static class Paths
     public const string WavesStaticDataPath = "StaticData/Game/Waves";
     public const string BulletStaticDataPath = "StaticData/Bullets/Bullets";
     public const string GameStaticDataPath = "StaticData/Game/GameStaticData";
+    public const string HUDPath = "UI/HUD";
+    public const string UIPanelSettings = "UI/PanelSettings";
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.CodeBase.Services
 {
@@ -16,6 +17,8 @@ namespace Assets.CodeBase.Services
         private Waves _wavesStaticData;
         private BulletsStaticData _bulletsStaticData;
         private GameStaticData _gameStaticData;
+        private VisualTreeAsset _hud;
+        private PanelSettings _uiPanelSettings;
 
         public PlayerStaticData PlayerStaticData => _playerStaticData;
         public EnemiesStaticData EnemiesStaticData => _enemiesStaticData;
@@ -25,6 +28,9 @@ namespace Assets.CodeBase.Services
 
         public BulletsStaticData BulletsStaticData => _bulletsStaticData;
 
+        public VisualTreeAsset HUD => _hud;
+        public PanelSettings UIPanelSettings => _uiPanelSettings;
+
         public void Load()
         {
             LoadPlayerStaticData();
@@ -32,6 +38,8 @@ namespace Assets.CodeBase.Services
             LoadWavesStaticData();
             LoadBulletsStaticData();
             LoadGameStaticData();
+            LoadHUD();
+            LoadUIPanelSettings();
         }
         public void LoadPlayerStaticData()
         {
@@ -52,6 +60,14 @@ namespace Assets.CodeBase.Services
         public void LoadGameStaticData()
         {
             _gameStaticData = Resources.Load<GameStaticData>(Paths.GameStaticDataPath);
+        }
+        public void LoadHUD()
+        {
+            _hud = Resources.Load<VisualTreeAsset>(Paths.HUDPath);
+        }
+        public void LoadUIPanelSettings()
+        {
+            _uiPanelSettings = Resources.Load<PanelSettings>(Paths.UIPanelSettings);
         }
     }
 }

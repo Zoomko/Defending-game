@@ -1,6 +1,7 @@
 using Assets.CodeBase.Data.StaticData;
 using Assets.CodeBase.Player;
 using Assets.CodeBase.Services;
+using Assets.CodeBase.UI;
 using UnityEngine;
 
 namespace Assets.CodeBase.Factory
@@ -11,18 +12,20 @@ namespace Assets.CodeBase.Factory
         private readonly RaycastService _raycatsService;
         private readonly IStaticDataService _staticDataService;
         private readonly IBulletFactory _bulletFactory;
+        private readonly UIHUDController _uiHUDController;
 
         private GameObject _player;
 
         public GameObject Player => _player;
-        public PlayerFactory(InputService inputService, RaycastService raycatsService, IStaticDataService staticDataService, IBulletFactory bulletFactory)
+
+        public PlayerFactory(InputService inputService, RaycastService raycatsService, IStaticDataService staticDataService, IBulletFactory bulletFactory, UIHUDController uiHUDController)
         {
             _inputService = inputService;
             _raycatsService = raycatsService;
             _staticDataService = staticDataService;
             _bulletFactory = bulletFactory;
+            _uiHUDController = uiHUDController;
         }
-
 
         public GameObject Create()
         {
@@ -31,7 +34,10 @@ namespace Assets.CodeBase.Factory
 
             var movementController = playerGameObject.GetComponent<MovementController>();
             var fireController = playerGameObject.GetComponent<FireController>();
-            var healthController = playerGameObject.GetComponent<HealthController>();           
+            var healthController = playerGameObject.GetComponent<HealthController>();
+            var damagable = playerGameObject.GetComponent<IDamagable>();
+
+            damagable.HealthChanged += _uiHUDController.OnHealthChanged;
 
             fireController.Constructor(_inputService, _staticDataService.PlayerStaticData, _bulletFactory);
             movementController.Contructor(_inputService, _raycatsService, _staticDataService.PlayerStaticData);

@@ -1,6 +1,8 @@
 ﻿using Assets.CodeBase.App.Services;
 using Assets.CodeBase.Factory;
+using Assets.CodeBase.Player;
 using Assets.CodeBase.Services;
+using Assets.CodeBase.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,8 @@ namespace Assets.CodeBase.App.StateMachine
         private readonly ICrystalFactory _crystalFactory;
         private readonly IEnemyFactory _enemyFactory;
         private readonly IBulletFactory _bulletFactory;
+        private readonly IHUDFactory _hudFactory;
+        private UIHUDController _hudController;
 
         public SpawnObjectsState(GameStateMachine gameStateMachine,
                                  WaveController waveController,
@@ -26,7 +30,8 @@ namespace Assets.CodeBase.App.StateMachine
                                  IPlayerFactory playerFactory,
                                  ICrystalFactory crystalFactory,
                                  IEnemyFactory enemyFactory,
-                                 IBulletFactory bulletFactory)
+                                 IBulletFactory bulletFactory,
+                                 IHUDFactory hudFactory)
         {
             _gameStateMachine = gameStateMachine;          
             _waveController = waveController;
@@ -35,6 +40,7 @@ namespace Assets.CodeBase.App.StateMachine
             _crystalFactory = crystalFactory;
             _enemyFactory = enemyFactory;
             _bulletFactory = bulletFactory;
+            _hudFactory = hudFactory;
         }
 
         public void Enter()
@@ -46,14 +52,18 @@ namespace Assets.CodeBase.App.StateMachine
             EnemySpawner[] enemySpawners = GameObject.FindObjectsOfType<EnemySpawner>();
             CrystalSpawner crystalSpawner = GameObject.FindObjectOfType<CrystalSpawner>();
 
+            var document = _hudFactory.Create();
+
             var player = _playerFactory.Create();
             playerSpawner.Spawn(player);
 
             var crystal = _crystalFactory.Create();
-            crystalSpawner.Spawn(crystal);
+            crystalSpawner.Spawn(crystal);           
 
             _waveController.SetSpawners(enemySpawners);
             _waveController.StartWave();
+
+            _gameStateMachine.Enter<GameState>();
         }
 
         public void Exit()

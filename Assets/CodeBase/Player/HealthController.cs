@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Assets.CodeBase.Player
 {
@@ -22,6 +23,7 @@ namespace Assets.CodeBase.Player
             _playerStaticData = playerStaticData;
             _maxHealth = playerStaticData.HP;
             _health = _maxHealth;
+            HealthChanged?.Invoke(_health, _maxHealth, 0);
         }
 
         private void Awake()

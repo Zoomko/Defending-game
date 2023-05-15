@@ -1,5 +1,6 @@
 ﻿using Assets.CodeBase.Data.StaticData;
 using Assets.CodeBase.Data.StaticData.Enemy;
+using UnityEngine.UIElements;
 
 namespace Assets.CodeBase.Services
 {
@@ -11,6 +12,8 @@ namespace Assets.CodeBase.Services
 
         BulletsStaticData BulletsStaticData { get; }
         GameStaticData GameStaticData { get; }
+        VisualTreeAsset HUD { get; }
+        PanelSettings UIPanelSettings { get; }
         void Load();
     }
 }

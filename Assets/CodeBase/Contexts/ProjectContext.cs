@@ -3,6 +3,7 @@ using Assets.CodeBase.App.Services;
 using Assets.CodeBase.App.StateMachine;
 using Assets.CodeBase.Factory;
 using Assets.CodeBase.Services;
+using Assets.CodeBase.UI;
 using UnityEngine;
 using Zenject;
 
@@ -21,6 +22,7 @@ public class ProjectContext : MonoInstaller
         Container.Bind<PersistentDataService>().AsSingle();
         Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle();
         Container.Bind<SaveLoadController>().AsSingle();
+        Container.Bind<UIHUDController>().AsSingle();
     }
 
     private void RegisterFactories()
@@ -29,5 +31,6 @@ public class ProjectContext : MonoInstaller
         Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
         Container.Bind<IBulletFactory>().To<BulletFactory>().AsSingle();
         Container.Bind<ICrystalFactory>().To<CrystalFactory>().AsSingle();
+        Container.Bind<IHUDFactory>().To<HUDFactory>().AsSingle();
     }
 }

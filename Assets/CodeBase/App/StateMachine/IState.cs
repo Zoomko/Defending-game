@@ -16,7 +16,7 @@ namespace Assets.CodeBase.App.StateMachine
         void Enter<T>(T data);
     }
 
-    public interface INoneParameterizedState:IState
+    public interface INoneParameterizedState: IState
     {
         void Enter();
     }

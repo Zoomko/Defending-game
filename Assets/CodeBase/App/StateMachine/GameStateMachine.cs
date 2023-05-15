@@ -18,7 +18,8 @@ namespace Assets.CodeBase.App.StateMachine
                                 IPlayerFactory playerFactory,
                                 ICrystalFactory crystalFactory,
                                 IEnemyFactory enemyFactory,
-                                IBulletFactory bulletFactory)
+                                IBulletFactory bulletFactory,
+                                IHUDFactory hudFactory)
         {
             _states = new Dictionary<Type, IState>()
             {
@@ -36,7 +37,9 @@ namespace Assets.CodeBase.App.StateMachine
                                                                   playerFactory,
                                                                   crystalFactory,
                                                                   enemyFactory,
-                                                                  bulletFactory) }
+                                                                  bulletFactory,
+                                                                  hudFactory) },
+                {typeof(GameState), new GameState(this, crystalFactory) }
 
             };
         }
