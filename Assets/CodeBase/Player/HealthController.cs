@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace Assets.CodeBase.Player
 {
@@ -34,7 +29,7 @@ namespace Assets.CodeBase.Player
         public void GetDamage(int value)
         {
             var result = Mathf.Max(0, _health - value);
-            if(result == 0)
+            if (result == 0)
             {
                 _dieController.Die();
             }

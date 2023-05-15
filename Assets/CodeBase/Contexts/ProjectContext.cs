@@ -9,6 +9,7 @@ using Zenject;
 
 public class ProjectContext : MonoInstaller
 {
+    private string persistentDataPath = "Data";
     public override void InstallBindings()
     {
         RegisterFactories();
@@ -19,7 +20,7 @@ public class ProjectContext : MonoInstaller
         Container.Bind<InputService>().AsSingle();
         Container.Bind<RaycastService>().AsSingle();
         Container.Bind<GameStateMachine>().AsSingle();
-        Container.Bind<PersistentDataService>().AsSingle();
+        Container.Bind<PersistentDataService>().AsSingle().WithArguments(persistentDataPath);
         Container.Bind<CoroutineRunner>().FromNewComponentOnNewGameObject().AsSingle();
         Container.Bind<SaveLoadController>().AsSingle();
         Container.Bind<UIHUDController>().AsSingle();

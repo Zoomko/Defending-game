@@ -13,9 +13,9 @@ namespace Assets.CodeBase.Services
         public event Action<PersistentGameData> Loading;
         public event Action<PersistentGameData> Saving;
 
-        public PersistentDataService(ILoadSaveDataFormat loadSaveDataFormat)
+        public PersistentDataService(ILoadSaveDataFormat loadSaveDataFormat, string path)
         {
-            _path = "Data";
+            _path = path;
             _loadSaveDataFormat = loadSaveDataFormat;
         }
 
