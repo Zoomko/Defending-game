@@ -1,0 +1,42 @@
+.menu-button {
+    width: 50%;
+    height: 10%;
+}
+
+.menu-button {
+    border-left-color: rgb(74, 92, 209);
+    border-right-color: rgb(74, 92, 209);
+    border-top-color: rgb(74, 92, 209);
+    border-bottom-color: rgb(74, 92, 209);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(204, 162, 55);
+}
+
+.menu-button {
+    -unity-text-outline-width: 0.3px;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    color: rgb(74, 92, 209);
+    -unity-text-outline-color: rgb(255, 255, 255);
+}
+
+.menu-background_panel {
+    background-color: rgba(173, 87, 6, 255);
+}
+
+.menu-button {
+    -unity-text-outline-color: rgba(74, 92, 209, 255);
+    font-size: 20px;
+    -unity-text-outline-width: 1px;
+}
+
+.menu-button {
+    -unity-text-outline-width: 0;
+    -unity-font-style: bold;
+}

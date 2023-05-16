@@ -19,7 +19,10 @@ namespace Assets.CodeBase.Services
                 }
             }
             else
-                File.CreateText(path);
+            {
+                var file = File.Create(path);
+                file.Close();
+            }
             return data;
         }
 

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/USS/menu-button.uss?fileID=7433441132597879392&amp;guid=602c42a0c36452149aa5c9f18a3f95bd&amp;type=3#menu-button" />
+    <Style src="project://database/Assets/Resources/UI/USS/menu-background_panel.uss?fileID=7433441132597879392&amp;guid=e672111c526a1cb47966c7e8c11e2f64&amp;type=3#menu-background_panel" />
+    <ui:VisualElement class="menu-background menu-background_panel" style="align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:Button text="Continue" display-tooltip-when-elided="true" name="Continue" class="menu-button" />
+        <ui:Button text="New game" display-tooltip-when-elided="true" name="NewGame" class="menu-button" />
+        <ui:Button text="Upgrades" display-tooltip-when-elided="true" name="Upgrades" class="menu-button" />
+        <ui:Button text="Info" display-tooltip-when-elided="true" name="Info" class="menu-button" />
+        <ui:Button text="Exit" display-tooltip-when-elided="true" name="Exit" class="menu-button" />
+    </ui:VisualElement>
+</ui:UXML>

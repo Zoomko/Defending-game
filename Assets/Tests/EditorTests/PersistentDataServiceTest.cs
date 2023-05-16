@@ -6,6 +6,7 @@ public class PersistentDataServiceTest
 {
     private readonly string testDataPath = "TestData";
     private PersistentDataService _persistentDataService;
+
     [OneTimeSetUp]
     public void Start()
     {
@@ -20,14 +21,18 @@ public class PersistentDataServiceTest
     }
 
     private void DeleteFileIfExist()
-    {
+    {        
         if (File.Exists(testDataPath))
-            File.Delete(testDataPath);
+            File.Delete(testDataPath);   
     }
 
     [Test]
-    public void PersistentDataServiceTestSimplePasses()
+    public void PersistentFileDoesnotExist()
     {
         _persistentDataService.Load();
+        if (_persistentDataService.PersistentGameData == null)
+            Assert.True(true);
+        else
+            Assert.Fail();
     }
 }

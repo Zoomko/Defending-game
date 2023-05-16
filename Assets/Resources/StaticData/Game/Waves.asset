@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyWaves:
   - Enemies:
-    - EnemyType: 0
+    - EnemyType: 1
       EmenyCount: 50
     WaveTimeLengthInSeconds: 60
     HPScale: 1
